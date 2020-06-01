@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Categoria";
+}
+
+<h2>Categoria</h2>
+<input type="button" value="Nuevo" onclick="document.location.href='@Url.Content("~/Categorias/New")'" />
+<input type="button" value="Refrescar" onclick="Get()" />
+<div id="divLista">
+
+</div>
+
+<script>
+    urlGet = "Categorias/List";
+    Get();
+    function Get() {
+        fetch(urlGet)
+            .then(function (response) {
+                return response.text();
+            })
+            .then((data) => {
+                document.getElementById("divLista").innerHTML = data;
+            })
+    }
+
+    //Eliminar
+    function jsDelete(id) {
+        fetch("@Url.Content("~/Categorias/Delete")", {
+            method: "POST",
+            body: JSON.stringify({
+                ID : id
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then(function (response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                alert("Erro al Ejecutar ");
+            }
+        }).then(function (Data) {
+            if (Data != "1") {
+                alert(Data);
+            } else {
+                Get();
+            }
+        })
+    }
+</script>
+

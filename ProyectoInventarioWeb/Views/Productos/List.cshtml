@@ -1,0 +1,47 @@
+﻿@using ProyectoInventarioWeb.Models.ViewModel;
+@model List<ListProductoViewModel>
+@{
+    Layout = null;
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">SKU</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Existencia</th>
+            <th scope="col">Año</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Opcione</th>
+            <th scope="col">Opcione</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var oPruducto in Model)
+        {
+        <tr>
+            <th scope="row">@oPruducto.ID</th>
+            <td>@oPruducto.Codigo</td>
+            <td>@oPruducto.Nombre</td>
+            <td>@oPruducto.SKU</td>
+            <td>@oPruducto.Precio</td>
+            <td>@oPruducto.Existencia</td>
+            <td>@oPruducto.Año</td>
+            <td>@oPruducto.Descripcion</td>
+            <td>@oPruducto.idCategoria</td>
+            <td>@oPruducto.idMarca</td>
+            <td>@oPruducto.idModelo</td>
+            <td>@oPruducto.idProveedor</td>
+            <td><input type="button" value="Editar" onclick="document.location.href='@Url.Content("~/Productos/Edit/?id= " + oPruducto.ID)'" /></td>
+            <td><input type="button" value="Eliminar" onclick="jsDelete(@oPruducto.ID)" /></td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,95 @@
+﻿@using ProyectoInventarioWeb.Models.ViewModel
+@model ProductosViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form>
+    <div class="row">
+        @Html.HiddenFor(d => d.ID, new { id = "id" })
+        <div class="form-group">
+            @Html.LabelFor(d => d.Nombre)
+            @Html.TextBoxFor(d => d.Nombre, new { id = "name" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.SKU)
+            @Html.TextBoxFor(d => d.SKU, new { id = "sku" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Precio)
+            @Html.TextBoxFor(d => d.Precio, new { id = "precio" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Existencia)
+            @Html.TextBoxFor(d => d.Existencia, new { id = "existencia" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.idCategoria)
+            @Html.TextBoxFor(d => d.idCategoria, new { id = "idcategoria" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.idMarca)
+            @Html.TextBoxFor(d => d.idMarca, new { id = "idmarca" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.idModelo)
+            @Html.TextBoxFor(d => d.idModelo, new { id = "idmodelo" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Año)
+            @Html.TextBoxFor(d => d.Año, new { id = "año" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.idProveedor)
+            @Html.TextBoxFor(d => d.idProveedor, new { id = "idproveedor" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Descripcion)
+            @Html.TextBoxFor(d => d.Descripcion, new { id = "descripcion" })
+        </div>
+
+        <input type="button" value="Guardar" onclick="jsEdit()" />
+    </div>
+</form>
+
+<script>
+    var url = "@Url.Content("~/Productos/Update")";
+    function jsEdit() {
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                Nombre: document.getElementById("name").value,
+                SKU: document.getElementById("sku").value,
+                Precio: document.getElementById("precio").value,
+                Existencia: document.getElementById("existencia").value,
+                idCategoria: document.getElementById("idcategoria").value,
+                idMarca: document.getElementById("idmarca").value,
+                idModelo: document.getElementById("idmodelo").value,
+                Año: document.getElementById("año").value,
+                idProveedor: document.getElementById("idproveedor").value,
+                Descripcion: document.getElementById("descripcion").value,
+                ID : document.getElementById("id").value
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then(function (response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                alert("Erro al Ejecutar ");
+            }
+        }).then(function (Data) {
+            if (Data != "1") {
+                alert(Data);
+            } else {
+                document.location.href = "@Url.Content("~/Productos")";
+            }
+        })
+    }
+</script>
+
