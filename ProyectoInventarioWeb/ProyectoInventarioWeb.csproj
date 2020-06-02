@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,7 +179,9 @@
     </Compile>
     <Compile Include="Models\ViewModel\CategoriasViewModel.cs" />
     <Compile Include="Models\ViewModel\ListCategoriasViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListModelosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListProductoViewModel.cs" />
+    <Compile Include="Models\ViewModel\ModelosViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductosViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -243,6 +246,10 @@
     <Content Include="Views\Categorias\List.cshtml" />
     <Content Include="Views\Categorias\New.cshtml" />
     <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Modelos\Index.cshtml" />
+    <Content Include="Views\Modelos\List.cshtml" />
+    <Content Include="Views\Modelos\New.cshtml" />
+    <Content Include="Views\Modelos\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

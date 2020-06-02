@@ -1,0 +1,29 @@
+﻿@using ProyectoInventarioWeb.Models.ViewModel;
+@model List<ListModelosViewModel>
+@{
+    Layout = null;
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre de Modelo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var oModelo in Model)
+        {
+            <tr>
+                <th scope="row">@oModelo.ID</th>
+                <th>@oModelo.Codigo</th>
+                <td>@oModelo.Nombre</td>
+                <td><input type="button" value="Editar" onclick="document.location.href='@Url.Content("~/Modelos/Edit/?id= " + oModelo.ID)'" /></td>
+                <td><input type="button" value="Eliminar" onclick="jsDelete(@oModelo.ID)" /></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

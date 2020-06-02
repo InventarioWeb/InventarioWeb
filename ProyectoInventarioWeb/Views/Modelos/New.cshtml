@@ -1,0 +1,42 @@
+﻿@model ProyectoInventarioWeb.Models.ViewModel.ModelosViewModel
+
+
+<form>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(d => d.Nombre)
+            @Html.TextBoxFor(d => d.Nombre, new { id = "Nombre" })
+        </div>
+
+        <input type="button" value="guardar" onclick="jsAdd()" />
+    </div>
+</form>
+
+<script>
+    var url = "@Url.Content("~/Modelos/Save")";
+    function jsAdd() {
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                Nombre: document.getElementById("Nombre").value
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then(function (response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                alert("Erro al Ejecutar ");
+            }
+        }).then(function (Data) {
+            if (Data != "1") {
+                alert(Data);
+            } else {
+                document.location.href = "@Url.Content("~/Modelos")";
+            }
+        })
+    }
+</script>
+
