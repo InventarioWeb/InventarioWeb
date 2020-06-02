@@ -19,7 +19,7 @@ namespace ProyectoInventarioWeb.Controllers
         public ActionResult List()
         {
             List<ListProductoViewModel> lst = new List<ListProductoViewModel>();
-            using (BDInventarioEntities db = new BDInventarioEntities())
+            using (InventarioWebEntities db = new InventarioWebEntities())
             {
                 lst =
                     (from lista in db.Producto
@@ -55,7 +55,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             try
             {
-                using (BDInventarioEntities db = new BDInventarioEntities())
+                using (InventarioWebEntities db = new InventarioWebEntities())
                 {
                     var oProducto = new Producto();
                     oProducto.id_producto = model.ID;
@@ -69,6 +69,7 @@ namespace ProyectoInventarioWeb.Controllers
                     oProducto.año = model.Año;
                     oProducto.id_proveedor = model.idProveedor;
                     oProducto.descripcion = model.Descripcion;
+                    oProducto.FechaRegistro = model.Fecha;
                     db.Producto.Add(oProducto);
                     db.SaveChanges();
                 }
@@ -83,7 +84,7 @@ namespace ProyectoInventarioWeb.Controllers
         public ActionResult Edit(int Id)
         {
             ProductosViewModel model = new ProductosViewModel();
-            using (BDInventarioEntities db = new BDInventarioEntities())
+            using (InventarioWebEntities db = new InventarioWebEntities())
             {
                 var oProducto = db.Producto.Find(Id);
                 model.Nombre = oProducto.nombre_producto;
@@ -96,6 +97,7 @@ namespace ProyectoInventarioWeb.Controllers
                 model.Año = oProducto.año;
                 model.idProveedor = oProducto.id_proveedor;
                 model.Descripcion = oProducto.descripcion;
+                model.Fecha = oProducto.FechaRegistro;
                 model.ID = oProducto.id_producto;
             }
 
@@ -107,7 +109,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             try
             {
-                using (BDInventarioEntities db = new BDInventarioEntities())
+                using (InventarioWebEntities db = new InventarioWebEntities())
                 {
                     var oProducto = db.Producto.Find(model.ID);
                     oProducto.nombre_producto = model.Nombre;
@@ -136,7 +138,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             try
             {
-                using (BDInventarioEntities db = new BDInventarioEntities())
+                using (InventarioWebEntities db = new InventarioWebEntities())
                 {
                     var oProducto = db.Producto.Find(Id);
                     db.Producto.Remove(oProducto);

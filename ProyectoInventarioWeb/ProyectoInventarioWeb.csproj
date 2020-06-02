@@ -193,8 +193,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\InventarioDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InventarioDM.Context.cs</LastGenOutput>
       <DependentUpon>InventarioDM.edmx</DependentUpon>
+      <LastGenOutput>InventarioDM.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\InventarioDM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

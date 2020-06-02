@@ -19,6 +19,6 @@ namespace ProyectoInventarioWeb.Models.ViewModel
         public int? Año { get; set; }
         public int? idProveedor { get; set; }
         public string Descripcion { get; set; }
-
+        public DateTime Fecha { get; set; }
     }
 }

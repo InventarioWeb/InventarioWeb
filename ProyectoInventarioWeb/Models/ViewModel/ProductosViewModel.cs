@@ -18,7 +18,7 @@ namespace ProyectoInventarioWeb.Models.ViewModel
         [DisplayName("Cantidad")]
         public int? Existencia { get; set; }
         [DisplayName("Categoria")]
-        public int idCategoria { get; set; }
+        public int? idCategoria { get; set; }
         [DisplayName("Marca")]
         public int? idMarca { get; set; }
         [DisplayName("Modelo")]
@@ -29,5 +29,7 @@ namespace ProyectoInventarioWeb.Models.ViewModel
         public int? idProveedor { get; set; }
         [DisplayName("Descripcion")]
         public string Descripcion { get; set; }
+        [DisplayName("Fecha")]
+        public DateTime? Fecha { get; set; }
     }
 }

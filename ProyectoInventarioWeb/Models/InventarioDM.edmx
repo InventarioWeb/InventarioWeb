@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BDInventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="InventarioWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -38,12 +38,13 @@
           <Property Name="SKU" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="precio_unitario" Type="money" />
           <Property Name="existencia" Type="int" />
-          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="id_categoria" Type="int" />
           <Property Name="id_marca" Type="int" />
           <Property Name="id_modelo" Type="int" />
           <Property Name="año" Type="int" />
           <Property Name="id_proveedor" Type="int" />
-          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="FechaRegistro" Type="datetime" />
           <Property Name="codigo" Type="varchar" MaxLength="34" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Administrador">
@@ -109,7 +110,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Producto_CategoriaFK">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categoria">
@@ -117,6 +118,18 @@
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Producto_MarcaFK">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_marca" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -168,7 +181,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BDInventarioModelStoreContainer">
+        <EntityContainer Name="InventarioWebModelStoreContainer">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="Produccion" store:Type="Tables" />
           <EntitySet Name="Marca" EntityType="Self.Marca" Schema="Produccion" store:Type="Tables" />
           <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="Produccion" store:Type="Tables" />
@@ -184,6 +197,10 @@
           </AssociationSet>
           <AssociationSet Name="Producto_CategoriaFK" Association="Self.Producto_CategoriaFK">
             <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Producto_MarcaFK" Association="Self.Producto_MarcaFK">
+            <End Role="Marca" EntitySet="Marca" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
           <AssociationSet Name="Producto_ModeloFK" Association="Self.Producto_ModeloFK">
@@ -203,10 +220,11 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BDInventarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="InventarioWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -223,7 +241,7 @@
           <Property Name="id_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="codigo" Type="String" MaxLength="34" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Producto" Relationship="BDInventarioModel.Producto_MarcaFK" FromRole="Marca" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.Producto_MarcaFK" FromRole="Marca" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Modelo">
           <Key>
@@ -232,7 +250,7 @@
           <Property Name="id_modelo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="codigo" Type="String" MaxLength="34" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Producto" Relationship="BDInventarioModel.Producto_ModeloFK" FromRole="Modelo" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.Producto_ModeloFK" FromRole="Modelo" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -243,17 +261,18 @@
           <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="precio_unitario" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="existencia" Type="Int32" />
-          <Property Name="id_categoria" Type="Int32" Nullable="false" />
-          <Property Name="codigo" Type="String" MaxLength="34" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Categoria" Relationship="Self.Producto_CategoriaFK" FromRole="Producto" ToRole="Categoria" />
+          <Property Name="id_categoria" Type="Int32" />
           <Property Name="id_marca" Type="Int32" />
-          <NavigationProperty Name="Marca" Relationship="BDInventarioModel.Producto_MarcaFK" FromRole="Producto" ToRole="Marca" />
           <Property Name="id_modelo" Type="Int32" />
           <Property Name="año" Type="Int32" />
           <Property Name="id_proveedor" Type="Int32" />
-          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Modelo" Relationship="BDInventarioModel.Producto_ModeloFK" FromRole="Producto" ToRole="Modelo" />
-          <NavigationProperty Name="Proveedor" Relationship="BDInventarioModel.Producto_ProveedorFK" FromRole="Producto" ToRole="Proveedor" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="codigo" Type="String" MaxLength="34" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Categoria" Relationship="Self.Producto_CategoriaFK" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="Marca" Relationship="Self.Producto_MarcaFK" FromRole="Producto" ToRole="Marca" />
+          <NavigationProperty Name="Modelo" Relationship="Self.Producto_ModeloFK" FromRole="Producto" ToRole="Modelo" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.Producto_ProveedorFK" FromRole="Producto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Administrador">
           <Key>
@@ -285,7 +304,7 @@
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="codigo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Producto" Relationship="BDInventarioModel.Producto_ProveedorFK" FromRole="Proveedor" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.Producto_ProveedorFK" FromRole="Proveedor" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -313,7 +332,7 @@
           <NavigationProperty Name="Rol" Relationship="Self.User_RolFK" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
         <Association Name="Producto_CategoriaFK">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categoria">
@@ -321,6 +340,42 @@
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Producto_MarcaFK">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Producto_ModeloFK">
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="id_modelo" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_modelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Producto_ProveedorFK">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_proveedor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -360,7 +415,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BDInventarioEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="InventarioWebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Marca" EntityType="Self.Marca" />
           <EntitySet Name="Modelo" EntityType="Self.Modelo" />
@@ -372,6 +427,18 @@
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="Producto_CategoriaFK" Association="Self.Producto_CategoriaFK">
             <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Producto_MarcaFK" Association="Self.Producto_MarcaFK">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Producto_ModeloFK" Association="Self.Producto_ModeloFK">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Producto_ProveedorFK" Association="Self.Producto_ProveedorFK">
+            <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
           <AssociationSet Name="Admi_RolFK" Association="Self.Admi_RolFK">
@@ -386,63 +453,15 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="Producto_MarcaFK" Association="BDInventarioModel.Producto_MarcaFK">
-            <End Role="Marca" EntitySet="Marca" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="Producto_ModeloFK" Association="BDInventarioModel.Producto_ModeloFK">
-            <End Role="Modelo" EntitySet="Modelo" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="Producto_ProveedorFK" Association="BDInventarioModel.Producto_ProveedorFK">
-            <End Role="Proveedor" EntitySet="Proveedor" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="Producto_MarcaFK">
-          <End Type="BDInventarioModel.Marca" Role="Marca" Multiplicity="0..1" />
-          <End Type="BDInventarioModel.Producto" Role="Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Marca">
-              <PropertyRef Name="id_marca" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="id_marca" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Producto_ModeloFK">
-          <End Type="BDInventarioModel.Modelo" Role="Modelo" Multiplicity="0..1" />
-          <End Type="BDInventarioModel.Producto" Role="Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modelo">
-              <PropertyRef Name="id_modelo" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="id_modelo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Producto_ProveedorFK">
-          <End Type="BDInventarioModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
-          <End Type="BDInventarioModel.Producto" Role="Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedor">
-              <PropertyRef Name="id_proveedor" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="id_proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BDInventarioModelStoreContainer" CdmEntityContainer="BDInventarioEntities">
+        <EntityContainerMapping StorageEntityContainer="InventarioWebModelStoreContainer" CdmEntityContainer="InventarioWebEntities">
           <EntitySetMapping Name="Categoria">
-            <EntityTypeMapping TypeName="BDInventarioModel.Categoria">
+            <EntityTypeMapping TypeName="InventarioWebModel.Categoria">
               <MappingFragment StoreEntitySet="Categoria">
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
@@ -451,7 +470,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Marca">
-            <EntityTypeMapping TypeName="BDInventarioModel.Marca">
+            <EntityTypeMapping TypeName="InventarioWebModel.Marca">
               <MappingFragment StoreEntitySet="Marca">
                 <ScalarProperty Name="id_marca" ColumnName="id_marca" />
                 <ScalarProperty Name="nombre_marca" ColumnName="nombre_marca" />
@@ -460,7 +479,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Modelo">
-            <EntityTypeMapping TypeName="BDInventarioModel.Modelo">
+            <EntityTypeMapping TypeName="InventarioWebModel.Modelo">
               <MappingFragment StoreEntitySet="Modelo">
                 <ScalarProperty Name="id_modelo" ColumnName="id_modelo" />
                 <ScalarProperty Name="nombre_modelo" ColumnName="nombre_modelo" />
@@ -469,25 +488,26 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="BDInventarioModel.Producto">
+            <EntityTypeMapping TypeName="InventarioWebModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
-                <ScalarProperty Name="año" ColumnName="año" />
-                <ScalarProperty Name="id_modelo" ColumnName="id_modelo" />
-                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
                 <ScalarProperty Name="SKU" ColumnName="SKU" />
                 <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
                 <ScalarProperty Name="existencia" ColumnName="existencia" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="id_modelo" ColumnName="id_modelo" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Administrador">
-            <EntityTypeMapping TypeName="BDInventarioModel.Administrador">
+            <EntityTypeMapping TypeName="InventarioWebModel.Administrador">
               <MappingFragment StoreEntitySet="Administrador">
                 <ScalarProperty Name="id_administrador" ColumnName="id_administrador" />
                 <ScalarProperty Name="nombre_administrador" ColumnName="nombre_administrador" />
@@ -500,7 +520,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permiso">
-            <EntityTypeMapping TypeName="BDInventarioModel.Permiso">
+            <EntityTypeMapping TypeName="InventarioWebModel.Permiso">
               <MappingFragment StoreEntitySet="Permiso">
                 <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
                 <ScalarProperty Name="nombre_permiso" ColumnName="nombre_permiso" />
@@ -508,7 +528,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
-            <EntityTypeMapping TypeName="BDInventarioModel.Proveedor">
+            <EntityTypeMapping TypeName="InventarioWebModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
                 <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
                 <ScalarProperty Name="nombre_proveedor" ColumnName="nombre_proveedor" />
@@ -519,7 +539,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rol">
-            <EntityTypeMapping TypeName="BDInventarioModel.Rol">
+            <EntityTypeMapping TypeName="InventarioWebModel.Rol">
               <MappingFragment StoreEntitySet="Rol">
                 <ScalarProperty Name="id_rol" ColumnName="id_rol" />
                 <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
@@ -528,7 +548,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="BDInventarioModel.Usuario">
+            <EntityTypeMapping TypeName="InventarioWebModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />

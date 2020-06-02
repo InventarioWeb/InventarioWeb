@@ -19,13 +19,14 @@ namespace ProyectoInventarioWeb.Models
         public string SKU { get; set; }
         public Nullable<decimal> precio_unitario { get; set; }
         public Nullable<int> existencia { get; set; }
-        public int id_categoria { get; set; }
-        public string codigo { get; set; }
+        public Nullable<int> id_categoria { get; set; }
         public Nullable<int> id_marca { get; set; }
         public Nullable<int> id_modelo { get; set; }
         public Nullable<int> año { get; set; }
         public Nullable<int> id_proveedor { get; set; }
         public string descripcion { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public string codigo { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         public virtual Marca Marca { get; set; }

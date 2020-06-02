@@ -13,10 +13,10 @@ namespace ProyectoInventarioWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BDInventarioEntities : DbContext
+    public partial class InventarioWebEntities : DbContext
     {
-        public BDInventarioEntities()
-            : base("name=BDInventarioEntities")
+        public InventarioWebEntities()
+            : base("name=InventarioWebEntities")
         {
         }
     

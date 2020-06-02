@@ -19,7 +19,7 @@ namespace ProyectoInventarioWeb.Controllers
         public ActionResult List()
         {
             List<ListCategoriasViewModel> lista = new List<ListCategoriasViewModel>();
-            using (BDInventarioEntities db = new BDInventarioEntities())
+            using (InventarioWebEntities db = new InventarioWebEntities())
             {
                 lista =
                     (from lst in db.Categoria
@@ -45,7 +45,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             try
             {
-                using (BDInventarioEntities db = new BDInventarioEntities())
+                using (InventarioWebEntities db = new InventarioWebEntities())
                 {
                     var oCategoria = new Categoria();
                     oCategoria.id_categoria = model.ID;
@@ -64,7 +64,7 @@ namespace ProyectoInventarioWeb.Controllers
         public ActionResult Edit(int Id)
         {
             CategoriasViewModel model = new CategoriasViewModel();
-            using (BDInventarioEntities db = new BDInventarioEntities())
+            using (InventarioWebEntities db = new InventarioWebEntities())
             {
                 var oCategoria = db.Categoria.Find(Id);
                 model.Nombre = oCategoria.nombre_categoria;
@@ -79,7 +79,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             try
             {
-                using (BDInventarioEntities db = new BDInventarioEntities())
+                using (InventarioWebEntities db = new InventarioWebEntities())
                 {
                     var oCategoria = db.Categoria.Find(model.ID);
                     oCategoria.nombre_categoria = model.Nombre;
@@ -99,7 +99,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             try
             {
-                using (BDInventarioEntities db = new BDInventarioEntities())
+                using (InventarioWebEntities db = new InventarioWebEntities())
                 {
                     var oCategoria = db.Categoria.Find(Id);
                     db.Categoria.Remove(oCategoria);

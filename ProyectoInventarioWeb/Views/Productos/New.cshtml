@@ -44,6 +44,10 @@
             @Html.LabelFor(d => d.Descripcion)
             @Html.TextBoxFor(d => d.Descripcion, new { id = "descripcion" })
         </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Fecha)
+            @Html.TextBoxFor(d => d.Fecha, new { id = "fecha" })
+        </div>
         <input type="button" value="guardar" onclick="jsAdd()" />
     </div>
 </form>
@@ -63,7 +67,8 @@
                 idModelo: document.getElementById("idmodelo").value,
                 Año: document.getElementById("año").value,
                 idProveedor: document.getElementById("idproveedor").value,
-                Descripcion: document.getElementById("descripcion").value
+                Descripcion: document.getElementById("descripcion").value,
+                Fecha: document.getElementById("fecha").value
             }),
             headers: {
                 "Accept": "application/json",
