@@ -12,7 +12,7 @@ namespace ProyectoInventarioWeb.Controllers
 {
     public class MarcasController : Controller
     {
-        private BDInventarioEntities db = new BDInventarioEntities();
+        private InventarioWebEntities db = new InventarioWebEntities();
 
         // GET: Marcas
         public ActionResult Index()
