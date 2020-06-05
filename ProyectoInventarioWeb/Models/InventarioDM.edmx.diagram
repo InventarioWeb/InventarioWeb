@@ -12,8 +12,8 @@
         <EntityTypeShape EntityType="InventarioWebModel.Administrador" Width="1.5" PointX="10.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="InventarioWebModel.Permiso" Width="1.5" PointX="5.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="InventarioWebModel.Proveedor" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventarioWebModel.Rol" Width="1.5" PointX="8" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventarioWebModel.Usuario" Width="1.5" PointX="10.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventarioWebModel.Rol" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventarioWebModel.Usuario" Width="1.5" PointX="8" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="InventarioWebModel.Producto_CategoriaFK" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioWebModel.Producto_MarcaFK" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioWebModel.Producto_ModeloFK" ManuallyRouted="false" />
@@ -21,6 +21,10 @@
         <AssociationConnector Association="InventarioWebModel.Admi_RolFK" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioWebModel.Rol_PermisoFK" ManuallyRouted="false" />
         <AssociationConnector Association="InventarioWebModel.User_RolFK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventarioWebModel.Operaciones" Width="1.5" PointX="10.125" PointY="6.625" />
+        <EntityTypeShape EntityType="InventarioWebModel.Rol_Operacion" Width="1.5" PointX="10.625" PointY="4.125" />
+        <AssociationConnector Association="InventarioWebModel.FK__Rol_Opera__id_Op__3B75D760" />
+        <AssociationConnector Association="InventarioWebModel.FK__Rol_Opera__id_ro__3A81B327" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

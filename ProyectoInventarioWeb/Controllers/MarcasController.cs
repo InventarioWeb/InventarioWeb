@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ProyectoInventarioWeb.Filters;
 using ProyectoInventarioWeb.Models;
 
 namespace ProyectoInventarioWeb.Controllers
@@ -15,11 +16,12 @@ namespace ProyectoInventarioWeb.Controllers
         private InventarioWebEntities db = new InventarioWebEntities();
 
         // GET: Marcas
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        [AuthorizeUser(idOperacion: 7)]
         public ActionResult Index()
         {
             return View(db.Marca.ToList());
         }
-
         // GET: Marcas/Details/5
         public ActionResult Details(int? id)
         {

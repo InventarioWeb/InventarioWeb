@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "UnauthorizedOperation";
+}
+
+<section>
+    Error, no tienes permiso para ingresar en esta opci&oacute;n
+</section>
+
+<section class="content">
+    <div class="error-page">
+        <h2>Error (Acceso denegado)</h2>
+        @if (ViewBag.operacion != "")
+        {
+            <p>Operaci&oacute;n @ViewBag.operacion</p>
+        }
+    </div>
+</section>
+

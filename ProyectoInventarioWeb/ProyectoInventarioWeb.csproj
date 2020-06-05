@@ -128,13 +128,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedorsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filters\AuthorizeUser.cs" />
+    <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +170,9 @@
     <Compile Include="Models\Modelo.cs">
       <DependentUpon>InventarioDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Operaciones.cs">
+      <DependentUpon>InventarioDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Permiso.cs">
       <DependentUpon>InventarioDM.tt</DependentUpon>
     </Compile>
@@ -175,6 +183,9 @@
       <DependentUpon>InventarioDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rol.cs">
+      <DependentUpon>InventarioDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rol_Operacion.cs">
       <DependentUpon>InventarioDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
@@ -268,6 +279,9 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Acceso\Login.cshtml" />
+    <Content Include="Views\Account\Registrar.cshtml" />
+    <Content Include="Views\Error\UnauthorizedOperation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
