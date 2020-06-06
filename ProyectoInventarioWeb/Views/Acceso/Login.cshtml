@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
 }
 
 <h2>Login</h2>
@@ -17,6 +18,8 @@
             Password
             <input type="password" name="pass" /><br />
             <input type="submit" class="btn btn-success" value="Ingresar" />
+            <br />
+            @Html.ActionLink("Crear una cuenta para ingresar", "Registrar", "Account")
         </div>
     </form>
 </div>

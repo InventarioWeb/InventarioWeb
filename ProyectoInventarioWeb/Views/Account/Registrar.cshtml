@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
 }
 
 <h2>Digite sus datos para registrarse</h2>
@@ -18,7 +19,9 @@
             <input type="text" name="cel" /><br />
             <input type="submit" class="btn btn-success" value="Registrarme" />
         </div>
+        <br />
     </form>
+    @Html.ActionLink("Ya tengo una cuenta", "Login", "Acceso")
 </div>
 
 @section scripts{

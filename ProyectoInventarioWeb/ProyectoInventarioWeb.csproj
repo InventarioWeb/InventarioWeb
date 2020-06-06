@@ -193,7 +193,6 @@
     </Compile>
     <Compile Include="Models\ViewModel\CategoriasViewModel.cs" />
     <Compile Include="Models\ViewModel\ListCategoriasViewModel.cs" />
-    <Compile Include="Models\ViewModel\ListCateViewModel.cs" />
     <Compile Include="Models\ViewModel\ListModelosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListProductoViewModel.cs" />
     <Compile Include="Models\ViewModel\ModelosViewModel.cs" />
@@ -284,6 +283,7 @@
     <Content Include="Views\Acceso\Login.cshtml" />
     <Content Include="Views\Account\Registrar.cshtml" />
     <Content Include="Views\Error\UnauthorizedOperation.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
