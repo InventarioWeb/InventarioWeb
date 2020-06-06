@@ -179,6 +179,7 @@
     </Compile>
     <Compile Include="Models\ViewModel\CategoriasViewModel.cs" />
     <Compile Include="Models\ViewModel\ListCategoriasViewModel.cs" />
+    <Compile Include="Models\ViewModel\ListCateViewModel.cs" />
     <Compile Include="Models\ViewModel\ListModelosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListProductoViewModel.cs" />
     <Compile Include="Models\ViewModel\ModelosViewModel.cs" />
@@ -213,6 +214,7 @@
     <Content Include="Models\InventarioDM.edmx.diagram">
       <DependentUpon>InventarioDM.edmx</DependentUpon>
     </Content>
+    <Content Include=".editorconfig" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
