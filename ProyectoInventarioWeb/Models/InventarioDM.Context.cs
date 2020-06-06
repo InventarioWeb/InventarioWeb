@@ -34,5 +34,7 @@ namespace ProyectoInventarioWeb.Models
         public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Operaciones> Operaciones { get; set; }
+        public virtual DbSet<Rol_Operacion> Rol_Operacion { get; set; }
     }
 }

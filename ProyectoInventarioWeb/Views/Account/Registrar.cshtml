@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Registrar";
+}
+
+<h2>Digite sus datos para registrarse</h2>
+<br />
+<div class="row">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            Nombre
+            <input type="text" name="name" /><br />
+            Email
+            <input type="email" name="email" /><br />
+            Password
+            <input type="password" name="password" /><br />
+            Celular
+            <input type="text" name="cel" /><br />
+            <input type="submit" class="btn btn-success" value="Registrarme" />
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script>
+    $(document).ready(function(){
+
+        $("#frm").submit(function(e){
+            e.preventDefault();
+            url = "@Url.Content("~/Account/Enviar")"
+            parametros = $(this).serialize();
+
+            $.post(url, parametros, function(data){
+                if(data=="1") {
+                document.location.href = "@Url.Content("~/Home/Index")";
+                }else{
+                    alert(data)
+                }
+            })
+        })
+    })
+    </script>
+}
+

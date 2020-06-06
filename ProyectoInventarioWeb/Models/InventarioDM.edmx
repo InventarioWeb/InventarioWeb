@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="InventarioWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="id_Operacion" />
+          </Key>
+          <Property Name="id_Operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Operacion" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Rol_Operacion">
+          <Key>
+            <PropertyRef Name="id_Rol_Operacion" />
+          </Key>
+          <Property Name="id_Rol_Operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_rol" Type="int" />
+          <Property Name="id_Operacion" Type="int" />
+        </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -109,6 +124,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Rol_Opera__id_Op__3B75D760">
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="0..1" />
+          <End Role="Rol_Operacion" Type="Self.Rol_Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operaciones">
+              <PropertyRef Name="id_Operacion" />
+            </Principal>
+            <Dependent Role="Rol_Operacion">
+              <PropertyRef Name="id_Operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rol_Opera__id_ro__3A81B327">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Rol_Operacion" Type="Self.Rol_Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="Rol_Operacion">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Producto_CategoriaFK">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
@@ -182,6 +221,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="InventarioWebModelStoreContainer">
+          <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol_Operacion" EntityType="Self.Rol_Operacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="Produccion" store:Type="Tables" />
           <EntitySet Name="Marca" EntityType="Self.Marca" Schema="Produccion" store:Type="Tables" />
           <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="Produccion" store:Type="Tables" />
@@ -194,6 +235,14 @@
           <AssociationSet Name="Admi_RolFK" Association="Self.Admi_RolFK">
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rol_Opera__id_Op__3B75D760" Association="Self.FK__Rol_Opera__id_Op__3B75D760">
+            <End Role="Operaciones" EntitySet="Operaciones" />
+            <End Role="Rol_Operacion" EntitySet="Rol_Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rol_Opera__id_ro__3A81B327" Association="Self.FK__Rol_Opera__id_ro__3A81B327">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Rol_Operacion" EntitySet="Rol_Operacion" />
           </AssociationSet>
           <AssociationSet Name="Producto_CategoriaFK" Association="Self.Producto_CategoriaFK">
             <End Role="Categoria" EntitySet="Categoria" />
@@ -315,6 +364,7 @@
           <NavigationProperty Name="Administrador" Relationship="Self.Admi_RolFK" FromRole="Rol" ToRole="Administrador" />
           <NavigationProperty Name="Permiso" Relationship="Self.Rol_PermisoFK" FromRole="Rol" ToRole="Permiso" />
           <NavigationProperty Name="Usuario" Relationship="Self.User_RolFK" FromRole="Rol" ToRole="Usuario" />
+          <NavigationProperty Name="Rol_Operacion" Relationship="InventarioWebModel.FK__Rol_Opera__id_ro__3A81B327" FromRole="Rol" ToRole="Rol_Operacion" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -452,7 +502,59 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <EntitySet Name="Operaciones" EntityType="InventarioWebModel.Operaciones" />
+          <EntitySet Name="Rol_Operacion" EntityType="InventarioWebModel.Rol_Operacion" />
+          <AssociationSet Name="FK__Rol_Opera__id_Op__3B75D760" Association="InventarioWebModel.FK__Rol_Opera__id_Op__3B75D760">
+            <End Role="Operaciones" EntitySet="Operaciones" />
+            <End Role="Rol_Operacion" EntitySet="Rol_Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rol_Opera__id_ro__3A81B327" Association="InventarioWebModel.FK__Rol_Opera__id_ro__3A81B327">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Rol_Operacion" EntitySet="Rol_Operacion" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="id_Operacion" />
+          </Key>
+          <Property Name="id_Operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Operacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rol_Operacion" Relationship="InventarioWebModel.FK__Rol_Opera__id_Op__3B75D760" FromRole="Operaciones" ToRole="Rol_Operacion" />
+        </EntityType>
+        <EntityType Name="Rol_Operacion">
+          <Key>
+            <PropertyRef Name="id_Rol_Operacion" />
+          </Key>
+          <Property Name="id_Rol_Operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_rol" Type="Int32" />
+          <Property Name="id_Operacion" Type="Int32" />
+          <NavigationProperty Name="Operaciones" Relationship="InventarioWebModel.FK__Rol_Opera__id_Op__3B75D760" FromRole="Rol_Operacion" ToRole="Operaciones" />
+          <NavigationProperty Name="Rol" Relationship="InventarioWebModel.FK__Rol_Opera__id_ro__3A81B327" FromRole="Rol_Operacion" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK__Rol_Opera__id_Op__3B75D760">
+          <End Type="InventarioWebModel.Operaciones" Role="Operaciones" Multiplicity="0..1" />
+          <End Type="InventarioWebModel.Rol_Operacion" Role="Rol_Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operaciones">
+              <PropertyRef Name="id_Operacion" />
+            </Principal>
+            <Dependent Role="Rol_Operacion">
+              <PropertyRef Name="id_Operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rol_Opera__id_ro__3A81B327">
+          <End Type="InventarioWebModel.Rol" Role="Rol" Multiplicity="0..1" />
+          <End Type="InventarioWebModel.Rol_Operacion" Role="Rol_Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="Rol_Operacion">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -557,6 +659,23 @@
                 <ScalarProperty Name="id_rol" ColumnName="id_rol" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operaciones">
+            <EntityTypeMapping TypeName="InventarioWebModel.Operaciones">
+              <MappingFragment StoreEntitySet="Operaciones">
+                <ScalarProperty Name="nombre_Operacion" ColumnName="nombre_Operacion" />
+                <ScalarProperty Name="id_Operacion" ColumnName="id_Operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol_Operacion">
+            <EntityTypeMapping TypeName="InventarioWebModel.Rol_Operacion">
+              <MappingFragment StoreEntitySet="Rol_Operacion">
+                <ScalarProperty Name="id_Operacion" ColumnName="id_Operacion" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="id_Rol_Operacion" ColumnName="id_Rol_Operacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

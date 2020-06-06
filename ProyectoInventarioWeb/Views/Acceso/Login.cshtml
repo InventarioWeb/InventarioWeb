@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<h2>Digite sus datos para Ingresar</h2>
+<br />
+<div class="row">
+    <div>
+        @ViewBag.Error
+    </div><br />
+    <form id="frm" action="@Url.Content("~/Acceso/Login")" method="post">
+        <div class="col-lg-6 col-lg-offset-3">
+            Email
+            <input type="email" name="email" /><br />
+            Password
+            <input type="password" name="pass" /><br />
+            <input type="submit" class="btn btn-success" value="Ingresar" />
+        </div>
+    </form>
+</div>
+

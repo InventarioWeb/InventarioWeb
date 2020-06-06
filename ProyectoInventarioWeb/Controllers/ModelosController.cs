@@ -1,4 +1,5 @@
-﻿using ProyectoInventarioWeb.Models;
+﻿using ProyectoInventarioWeb.Filters;
+using ProyectoInventarioWeb.Models;
 using ProyectoInventarioWeb.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace ProyectoInventarioWeb.Controllers
     public class ModelosController : Controller
     {
         // GET: Modelos
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        [AuthorizeUser(idOperacion: 6)]
         public ActionResult Index()
         {
             return View();
         }
-
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult List()
         {
             List<ListModelosViewModel> lista = new List<ListModelosViewModel>();
