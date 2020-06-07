@@ -193,7 +193,6 @@
     </Compile>
     <Compile Include="Models\ViewModel\CategoriasViewModel.cs" />
     <Compile Include="Models\ViewModel\ListCategoriasViewModel.cs" />
-    <Compile Include="Models\ViewModel\ListCateViewModel.cs" />
     <Compile Include="Models\ViewModel\ListModelosViewModel.cs" />
     <Compile Include="Models\ViewModel\ListProductoViewModel.cs" />
     <Compile Include="Models\ViewModel\ModelosViewModel.cs" />
