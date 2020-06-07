@@ -12,11 +12,20 @@
         @ViewBag.Error
     </div><br />
     <form id="frm" action="@Url.Content("~/Acceso/Login")" method="post">
-        <div class="col-lg-6 col-lg-offset-3">
-            Email
-            <input type="email" name="email" /><br />
-            Password
-            <input type="password" name="pass" /><br />
+        <div class="col-lg-6 col-lg-offset-3" align="justify">
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email" /></td>
+                    
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                    <td>Password&nbsp;</td>
+                    <td><input type="password" name="pass" /></td>
+                </tr>
+            </table>
+            <br />
             <input type="submit" class="btn btn-success" value="Ingresar" />
             <br />
             @Html.ActionLink("Crear una cuenta para ingresar", "Registrar", "Account")

@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,18 +21,113 @@
                 </button>
                 @Html.ActionLink("Inventario Web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            @*<div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
+                    <li></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Nombre de Usuario", "index", "Usuarios")</li>
 
                 </ul>
-            </div>
+            </div>*@
 
         </div>
     </div>
-    <div class="container body-content">
+
+    <style type="text/css">
+
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 30px;
+            left: 0;
+            background-color: #1a2226;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+            /* Style the sidenav links and the dropdown button */
+            .sidenav a, .dropdown-btn {
+                padding: 12px 5px 12px 15px;
+                text-decoration: none;
+                font-size: 14px;
+                color: #b8c7ce;
+                display: block;
+                border: none;
+                background: #222d32;
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                outline: none;
+                margin-left: 0px;
+                border-left: 3px solid #222d32;
+            }
+
+                /* On mouse-over */
+                .sidenav a:hover, .dropdown-btn:hover {
+                    border-left: 3px solid #3c8dbc;
+                    background: #1e282c;
+                    color: #f1f1f1;
+                }
+
+        /* Main content */
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            font-size: 15px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            border-left: 3px solid #3c8dbc;
+            background-color: #1e282c;
+            color: white;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            color:white;
+            display: none;
+            background-color: #262626;
+            padding-left: 25px;
+        }
+
+            .dropdown-container .a {
+                border-left: 1px solid white;
+                padding: 10px 20px;
+                color: #818181;
+                background-color: #262626;
+            }
+
+                .dropdown-container .a:hover {
+                    border-left: 1px solid white;
+                    background-color: #262626;
+                }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+            padding-top: 5px;
+        }
+    </style>
+
+    <div class="sidenav">
+        <a href="@Url.Content("~/Home")" style=" color: white; margin: 15px 0px; border-left: 3px solid #3c8dbc;"><i class="fa fa-dashboard" style="font-size: 15px; margin-right: 8px;"></i>Panel de Control</a>
+        <button class="dropdown-btn">
+            <i class="fa fa-laptop" style="font-size: 15px; margin-right: 8px;"></i>
+            Informaci&oacute;n
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            Debe ingresar para<br />ver m&aacute;s opciones
+            @Html.ActionLink("Registrarme", "Registrar", "Account", new { area = "" }, new { @class = "a" })
+        </div>
+        
+    </div>
+    <div class="main body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -41,5 +138,23 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
