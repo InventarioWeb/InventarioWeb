@@ -1,24 +1,43 @@
 ﻿
 @{
     ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
 }
 
 <h2>Digite sus datos para registrarse</h2>
 <br />
 <div class="row">
     <form id="frm">
-        <div class="col-lg-6 col-lg-offset-3">
-            Nombre
-            <input type="text" name="name" /><br />
-            Email
-            <input type="email" name="email" /><br />
-            Password
-            <input type="password" name="password" /><br />
-            Celular
-            <input type="text" name="cel" /><br />
+        <div class="col-lg-6 col-lg-offset-3" align="justify">
+            <table>
+                <tr>
+                    <td>Nombre</td>
+                    <td><input type="text" name="name" /></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email" /></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                    <td>Password&nbsp;</td>
+                    <td><input type="password" name="password" /></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                    <td>Celular</td>
+                    <td><input type="text" name="cel" /></td>
+                </tr>
+            </table>
+            <br />
             <input type="submit" class="btn btn-success" value="Registrarme" />
+            <br />
+            @Html.ActionLink("Ya tengo una cuenta", "Login", "Acceso")
         </div>
+        <br />
     </form>
+    
 </div>
 
 @section scripts{

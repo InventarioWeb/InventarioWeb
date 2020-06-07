@@ -21,7 +21,7 @@
                 </button>
                 @Html.ActionLink("Inventario Web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            @*<div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li></li>
                 </ul>
@@ -29,7 +29,7 @@
                     <li>@Html.ActionLink("Nombre de Usuario", "index", "Usuarios")</li>
 
                 </ul>
-            </div>
+            </div>*@
 
         </div>
     </div>
@@ -88,6 +88,7 @@
 
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
+            color:white;
             display: none;
             background-color: #262626;
             padding-left: 25px;
@@ -117,37 +118,14 @@
         <a href="@Url.Content("~/Home")" style=" color: white; margin: 15px 0px; border-left: 3px solid #3c8dbc;"><i class="fa fa-dashboard" style="font-size: 15px; margin-right: 8px;"></i>Panel de Control</a>
         <button class="dropdown-btn">
             <i class="fa fa-laptop" style="font-size: 15px; margin-right: 8px;"></i>
-            Mantenimiento
+            Informaci&oacute;n
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            @Html.ActionLink("General", "index", "Empresa", new { area = "" }, new { @class = "a" })
-            @Html.ActionLink("Usuarios", "index", "Usuarios", new { area = "" }, new { @class = "a" })
-            @Html.ActionLink("Administrador", "Detalle", "Usuarios", new { area = "" }, new { @class = "a" })
+            Debe ingresar para<br />ver m&aacute;s opciones
+            @Html.ActionLink("Registrarme", "Registrar", "Account", new { area = "" }, new { @class = "a" })
         </div>
-        <button class="dropdown-btn">
-            <i class="fa fa-edit" style="font-size: 15px; margin-right: 8px;"></i>
-            Inventario General
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            @Html.ActionLink("Productos", "index", "Productos", new { area = "" }, new { @class = "a" })
-            @Html.ActionLink("Categorias", "index", "Categorias", new { area = "" }, new { @class = "a" })
-            @Html.ActionLink("Modelos", "index", "Modelos", new { area = "" }, new { @class = "a" })
-            @Html.ActionLink("Marcas", "index", "Marcas", new { area = "" }, new { @class = "a" })
-        </div>
-        <button class="dropdown-btn">
-            <i class="fa fa-th" style="font-size: 15px; margin-right: 8px;"></i>
-            Compras
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            @Html.ActionLink("Proveedores", "index", "Proveedors", new { area = "" }, new { @class = "a" })
-        </div>
-        <a href="#"><i class="fa fa-info-circle" style="font-size: 15px; margin-right: 8px;"></i>Acerca de..</a>
-
-        <a href="@Url.Content("~/Acceso/LogOut")"><i class="fa fa-close" style="font-size: 15px; margin-right: 8px;"></i>Cerrar Sesion</a>
-
+        
     </div>
     <div class="main body-content">
         @RenderBody()
