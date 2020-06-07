@@ -15,7 +15,8 @@ namespace ProyectoInventarioWeb.Controllers
             return View();
         }
 
-        public ActionResult Enviar(string name, string email, string password, string cel)
+        [HttpPost]
+        public ActionResult Registrar(string name, string email, string password, string cel)
         {
             try
             {
@@ -28,8 +29,7 @@ namespace ProyectoInventarioWeb.Controllers
                         contraseña = password,
                         telefono = cel,
                         id_rol = 2,
-                        Fecha = DateTime.Now,
-                        codigo = "User"
+                        Fecha = DateTime.Now
                     };
 
                     db.Usuario.Add(nuevo);
@@ -49,19 +49,21 @@ namespace ProyectoInventarioWeb.Controllers
 
                     if (lst.Count() > 0)
                     {
-                        return Content("1");
+                        return RedirectToAction("Login","Acceso");
                     }
                     else
                     {
-                        return Content("No ingresado :'(");
+                        ViewBag.Error = "Ocurrio un error al conectarse a la Base de Datos, intente de nuevo";
+                        return View();
                     }
                 }
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content("Ocurrió un error :( " + ex.Message);
+                ViewBag.Error = "Ocurrio un error al conectarse a la Base de Datos, intente de nuevo";
+                return View();
             }
         }
     }
