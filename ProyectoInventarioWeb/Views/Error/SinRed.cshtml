@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "SinRed";
+}
+
+<section>
+    Error, hay un problema con la red, no se puede dirigir a la p&aacute;gina deseada
+</section>
+
+<section class="content">
+    <div class="error-page">
+        <h2>Error en la conexi&oacute;n</h2>
+        @if (ViewBag.operacion != "")
+        {
+            <p>Operaci&oacute;n @ViewBag.operacion</p>
+        }
+    </div>
+</section>
+

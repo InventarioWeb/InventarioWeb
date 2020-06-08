@@ -290,6 +290,7 @@
     <Content Include="Views\Account\Registrar.cshtml" />
     <Content Include="Views\Error\UnauthorizedOperation.cshtml" />
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
+    <Content Include="Views\Error\SinRed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

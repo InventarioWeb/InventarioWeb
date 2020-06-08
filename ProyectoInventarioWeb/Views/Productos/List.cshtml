@@ -25,33 +25,41 @@
             <th scope="col">Descripcion</th>
             @*<th scope="col">Categoria</th>*@
             @*<th scope="col">Marca</th>
-                <th scope="col">Modelo</th>*@
+        <th scope="col">Modelo</th>*@
             @*<th scope="col">Proveedor</th>*@
             @*<th scope="col">Fecha</th>*@
-            <th scope="col">Editar</th>
-            <th scope="col">Eliminar</th>
+            @if (Convert.ToString(Session["RolUsuario"]) == "1")
+            {
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            }
+
         </tr>
     </thead>
     <tbody id="myTable">
         @foreach (var oPruducto in Model)
         {
-            <tr>
-                <th scope="row">@oPruducto.ID</th>
-                <td>@oPruducto.Codigo</td>
-                <td>@oPruducto.Nombre</td>
-                <td>@oPruducto.SKU</td>
-                <td>@oPruducto.Precio</td>
-                <td>@oPruducto.Existencia</td>
-                <td>@oPruducto.Año</td>
-                <td>@oPruducto.Descripcion</td>
-                @*<td>@oPruducto.idCategoria</td>*@
-                @*<td>@oPruducto.idMarca</td>
-                    <td>@oPruducto.idModelo</td>*@
-                @*<td>@oPruducto.idProveedor</td>*@
-                @*<td>@oPruducto.Fecha</td>*@
+        <tr>
+            <th scope="row">@oPruducto.ID</th>
+            <td>@oPruducto.Codigo</td>
+            <td>@oPruducto.Nombre</td>
+            <td>@oPruducto.SKU</td>
+            <td>@oPruducto.Precio</td>
+            <td>@oPruducto.Existencia</td>
+            <td>@oPruducto.Año</td>
+            <td>@oPruducto.Descripcion</td>
+            @*<td>@oPruducto.idCategoria</td>*@
+            @*<td>@oPruducto.idMarca</td>
+        <td>@oPruducto.idModelo</td>*@
+            @*<td>@oPruducto.idProveedor</td>*@
+            @*<td>@oPruducto.Fecha</td>*@
+            @if (Convert.ToString(Session["RolUsuario"]) == "1")
+            {
                 <td><input type="button" class="btn btn-primary" value="Editar" onclick="document.location.href='@Url.Content("~/Productos/Edit/?id= " + oPruducto.ID)'" /></td>
                 <td><input type="button" class="btn btn-default" value="Eliminar" onclick="jsDelete(@oPruducto.ID)" /></td>
-            </tr>
+            }
+
+        </tr>
         }
     </tbody>
 </table>

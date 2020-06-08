@@ -3,8 +3,8 @@
     ViewBag.Title = "Categorias";
 }
 
-    <h2 style="text-align:center;">@ViewBag.Title</h2>
-    <hr style="width:100%;"/>
+<h2 style="text-align:center;">@ViewBag.Title</h2>
+<hr style="width:100%;" />
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -26,14 +26,18 @@
     </div><!-- /.modal-dialog -->
 </div>
 
-<button type="button" id="btnNuevo" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    <font style="vertical-align: inherit;">
+@if (Convert.ToString(Session["RolUsuario"]) == "1")
+{
+    <button type="button" id="btnNuevo" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         <font style="vertical-align: inherit;">
-            Nuevo
+            <font style="vertical-align: inherit;">
+                Nuevo
+            </font>
         </font>
-    </font>
-</button>
-<button type="button" onclick="Get()" class="btn btn-primary" style="margin:10px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; margin: 10px 15px;">Actualizar</font></font></button>
+    </button>
+    <button type="button" onclick="Get()" class="btn btn-primary" style="margin:10px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; margin: 10px 15px;">Actualizar</font></font></button>
+}
+
 
 <div id="divLista">
 

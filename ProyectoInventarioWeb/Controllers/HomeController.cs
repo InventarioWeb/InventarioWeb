@@ -10,6 +10,7 @@ namespace ProyectoInventarioWeb.Controllers
     public class HomeController : Controller
     {
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        [AuthorizeUser(idOperacion: 1)]
         public ActionResult Index()
         {
             return View();

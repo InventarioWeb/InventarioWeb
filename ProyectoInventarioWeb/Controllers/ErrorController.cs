@@ -15,5 +15,12 @@ namespace ProyectoInventarioWeb.Controllers
             ViewBag.operacion = operacion;
             return View();
         }
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public ActionResult SinRed(string operacion)
+        {
+            ViewBag.operacion = operacion;
+            return View();
+        }
     }
 }

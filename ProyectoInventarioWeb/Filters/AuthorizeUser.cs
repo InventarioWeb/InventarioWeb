@@ -30,6 +30,7 @@ namespace ProyectoInventarioWeb.Filters
                                         where m.id_rol == oUsuario.id_rol
                                         && m.id_Operacion == idOperacion
                                         select m;
+                HttpContext.Current.Session["RolUsuario"] = oUsuario.id_rol;
                 if (lstMisOperaciones.ToList().Count() == 0)
                 {
                     nombreOperacion = getNombreDeOperacion(idOperacion);
@@ -38,7 +39,7 @@ namespace ProyectoInventarioWeb.Filters
             }
             catch (Exception)
             {
-                filterContext.Result = new RedirectResult("~/Error/UnauthorizedOperation?operacion=" + nombreOperacion);
+                filterContext.Result = new RedirectResult("~/Error/SinRed?operacion=" + nombreOperacion);
             }
         }
 
