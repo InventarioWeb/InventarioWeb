@@ -1,0 +1,41 @@
+﻿form {
+    display: block;
+    margin-top: 0em;
+}
+
+.contenedor-inputs {
+    padding: 10px 30px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.input-grup {
+    margin-bottom: 15px;
+    float:left;
+}
+
+.input {
+    display:block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inputguardar {
+    float:left;
+}
+
+.thead-dark th {
+    background: #343a40;
+    color: white;
+    border-color: None;
+}
+
+

@@ -1,55 +1,57 @@
 ﻿@model ProyectoInventarioWeb.Models.ViewModel.ProductosViewModel
 @{
     ViewBag.Title = "New";
+    Layout = null;
 
 }
-<form>
-    <div class="row">
-        <div class="form-group">
+
+@Styles.Render("~/Content/style.css")
+<form class="form-register">
+    <div class="contenedor-inputs">
+        <div class="input-grup">
             @Html.LabelFor(d => d.Nombre)
-            @Html.TextBoxFor(d => d.Nombre, new { id = "name" })
+            @Html.TextBoxFor(d => d.Nombre, new { id = "name", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.SKU)
-            @Html.TextBoxFor(d => d.SKU, new { id = "sku" })
+            @Html.TextBoxFor(d => d.SKU, new { id = "sku", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.Precio)
-            @Html.TextBoxFor(d => d.Precio, new { id = "precio" })
+            @Html.TextBoxFor(d => d.Precio, new { id = "precio", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.Existencia)
-            @Html.TextBoxFor(d => d.Existencia, new { id = "existencia" })
+            @Html.TextBoxFor(d => d.Existencia, new { id = "existencia", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.idCategoria)
-            @Html.TextBoxFor(d => d.idCategoria, new { id = "idcategoria" })
+            @Html.TextBoxFor(d => d.idCategoria, new { id = "idcategoria", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.idMarca)
-            @Html.TextBoxFor(d => d.idMarca, new { id = "idmarca" })
+            @Html.TextBoxFor(d => d.idMarca, new { id = "idmarca", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.idModelo)
-            @Html.TextBoxFor(d => d.idModelo, new { id = "idmodelo" })
+            @Html.TextBoxFor(d => d.idModelo, new { id = "idmodelo", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.Año)
-            @Html.TextBoxFor(d => d.Año, new { id = "año" })
+            @Html.TextBoxFor(d => d.Año, new { id = "año", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.idProveedor)
-            @Html.TextBoxFor(d => d.idProveedor, new { id = "idproveedor" })
+            @Html.TextBoxFor(d => d.idProveedor, new { id = "idproveedor", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.Descripcion)
-            @Html.TextBoxFor(d => d.Descripcion, new { id = "descripcion" })
+            @Html.TextBoxFor(d => d.Descripcion, new { id = "descripcion", @class = "input" })
         </div>
-        <div class="form-group">
+        <div class="input-grup">
             @Html.LabelFor(d => d.Fecha)
-            @Html.TextBoxFor(d => d.Fecha, new { id = "fecha" })
+            @Html.TextBoxFor(d => d.Fecha, new { id = "fecha", @class = "input" })
         </div>
-        <input type="button" value="guardar" onclick="jsAdd()" />
     </div>
 </form>
 

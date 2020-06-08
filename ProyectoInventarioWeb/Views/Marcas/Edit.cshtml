@@ -1,20 +1,18 @@
 ﻿@model ProyectoInventarioWeb.Models.Marca
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Editar</h2>
-
+<h2 style="text-align:center;">@ViewBag.Title</h2>
+<hr style="width:100%;" />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Marca</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_marca)
 
@@ -36,7 +34,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <input type="submit" class="btn btn-primary" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>

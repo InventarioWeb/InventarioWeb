@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -50,7 +53,7 @@
 
             /* Style the sidenav links and the dropdown button */
             .sidenav a, .dropdown-btn {
-                padding: 12px 5px 12px 15px;
+                padding: 12px 0px 10px 15px;
                 text-decoration: none;
                 font-size: 14px;
                 color: #b8c7ce;
@@ -108,13 +111,13 @@
         /* Optional: Style the caret down icon */
         .fa-caret-down {
             float: right;
-            padding-right: 8px;
+            padding-right: 5px;
             padding-top: 5px;
         }
     </style>
 
     <div class="sidenav">
-        <a href="@Url.Content("~/Home")" style=" color: white; margin: 15px 0px; border-left: 3px solid #3c8dbc;"><i class="fa fa-dashboard" style="font-size: 15px; margin-right: 8px;"></i>Panel de Control</a>
+        <a href="@Url.Content("~/Home/")" style=" color: white; margin: 15px 0px; border-left: 3px solid #3c8dbc;"><i class="fa fa-dashboard" style="font-size: 15px; margin-right: 8px;"></i>Panel de Control</a>
         <button class="dropdown-btn">
             <i class="fa fa-laptop" style="font-size: 15px; margin-right: 8px;"></i>
             Mantenimiento
@@ -153,7 +156,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year/@DateTime.Now.Month/@DateTime.Now.Day - Inventario Web ASP.NET MVC</p>
         </footer>
     </div>
 
@@ -177,6 +180,8 @@
                 }
             });
         }
+
+
     </script>
 </body>
 </html>

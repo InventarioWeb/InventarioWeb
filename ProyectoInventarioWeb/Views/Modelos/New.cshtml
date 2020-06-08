@@ -1,14 +1,18 @@
 ﻿@model ProyectoInventarioWeb.Models.ViewModel.ModelosViewModel
 
+@{
+    ViewBag.Title = "New";
+    Layout = null;
 
+}
+
+@Styles.Render("~/Content/style.css")
 <form>
-    <div class="row">
+    <div class="contenedor-inputs">
         <div class="form-group">
             @Html.LabelFor(d => d.Nombre)
-            @Html.TextBoxFor(d => d.Nombre, new { id = "Nombre" })
+            @Html.TextBoxFor(d => d.Nombre, new { id = "Nombre", @class = "input" })
         </div>
-
-        <input type="button" value="guardar" onclick="jsAdd()" />
     </div>
 </form>
 

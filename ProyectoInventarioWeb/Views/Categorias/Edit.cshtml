@@ -5,17 +5,21 @@
     ViewBag.Title = "Editar";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 style="text-align:center;">@ViewBag.Title</h2>
+<hr style="width:100%;" />
 
+@Styles.Render("~/Content/style.css")
 <form>
-    <div class="row">
+    <div class="contenedor-inputs">
         @Html.HiddenFor(d => d.ID, new { id = "id" })
         <div class="form-group">
             @Html.LabelFor(d => d.Nombre)
-            @Html.TextBoxFor(d => d.Nombre, new { id = "Nombre" })
+            @Html.TextBoxFor(d => d.Nombre, new { id = "Nombre", @class = "input" })
         </div>
-
-        <input type="button" value="Guardar" onclick="jsEdit()" />
+        <div class="input-grup">
+            <button type="button" class="btn btn-primary" onclick="jsEdit()" style="margin: 10px"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Guardar Cambios</font></font></button>
+            <a type="button" class="btn btn-primary" href="@Url.Content("~/Categorias")" style="margin:10px; background: Crimson; border:none;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cancelar</font></font></a>
+        </div>
     </div>
 </form>
 

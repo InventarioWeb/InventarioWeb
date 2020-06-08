@@ -1,11 +1,40 @@
 ﻿
 @{
-    ViewBag.Title = "Categoria";
+    ViewBag.Title = "Categorias";
 }
 
-<h2>Categoria</h2>
-<input type="button" value="Nuevo" onclick="document.location.href='@Url.Content("~/Categorias/New")'" />
-<input type="button" value="Refrescar" onclick="Get()" />
+    <h2 style="text-align:center;">@ViewBag.Title</h2>
+    <hr style="width:100%;"/>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerca"><span aria-hidden="true"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">×</font></font></span></button>
+                <h4 class="modal-title" id="myModalLabel"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ingresar Categoria</font></font></h4>
+            </div>
+            <div class="modal-body" id="modal-Contenedor">
+                Cargando...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cancelar</font></font></button>
+                <button type="button" class="btn btn-primary" onclick="jsAdd()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Guardar</font></font></button>
+
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<button type="button" id="btnNuevo" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">
+            Nuevo
+        </font>
+    </font>
+</button>
+<button type="button" onclick="Get()" class="btn btn-primary" style="margin:10px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; margin: 10px 15px;">Actualizar</font></font></button>
+
 <div id="divLista">
 
 </div>
@@ -50,3 +79,6 @@
     }
 </script>
 
+@section scripts{
+    <script src="~/Scripts/Categoria.js"></script>
+}

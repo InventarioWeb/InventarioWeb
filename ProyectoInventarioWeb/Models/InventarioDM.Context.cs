@@ -36,5 +36,9 @@ namespace ProyectoInventarioWeb.Models
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Operaciones> Operaciones { get; set; }
         public virtual DbSet<Rol_Operacion> Rol_Operacion { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoInventarioWeb.Models.ViewModel.ListProductoViewModel> ListProductoViewModels { get; set; }
+
+        object placeHolderVariable;
     }
 }

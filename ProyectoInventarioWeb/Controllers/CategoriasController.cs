@@ -58,9 +58,9 @@ namespace ProyectoInventarioWeb.Controllers
                 }
                 return Content("1");
             }
-            catch (Exception ex)
+            catch
             {
-                return Content(ex.Message);
+                return Content("Es Necesario llenar todos los campos");
             }
         }
 
@@ -91,9 +91,9 @@ namespace ProyectoInventarioWeb.Controllers
                 }
                 return Content("1");
             }
-            catch (Exception ex)
+            catch
             {
-                return Content(ex.Message);
+                return Content("Es Necesario llenar todos los campos");
             }
         }
 

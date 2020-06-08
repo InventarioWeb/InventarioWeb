@@ -1,40 +1,53 @@
 ﻿@model IEnumerable<ProyectoInventarioWeb.Models.Marca>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Marcas";
 }
 
-<h2>Marcas</h2>
-
+<h2 style="text-align:center;">@ViewBag.Title</h2>
+<hr style="width:100%;" />
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
+
+<style type="text/css">
+    .thead-dark th {
+        background: #343a40;
+        color: white;
+        border-color: None;
+    }
+</style>
+
+<table class="table table-striped">
+    <tr class="thead-dark">
         <th>
             @Html.DisplayNameFor(model => model.nombre_marca)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.codigo)
         </th>
-        <th></th>
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_marca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.codigo)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_marca }) |  
-             |
-            @Html.ActionLink("Borar", "Delete", new { id=item.id_marca })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id_marca })
+            </td>
+            <td>@Html.ActionLink("Borar", "Delete", new { id = item.id_marca, @class="btn btn-primary" })</td>
+        </tr>
+    }
 
 </table>
+
+@section scripts{
+    <script src="~/Scripts/Marca.js"></script>
+}

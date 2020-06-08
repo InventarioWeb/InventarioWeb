@@ -78,9 +78,9 @@ namespace ProyectoInventarioWeb.Controllers
                 }
                 return Content("1");
             }
-            catch (Exception ex)
+            catch 
             {
-                return Content(ex.InnerException.Message);
+                return Content("Es Necesario llenar todos los campos");
             }
         }
 
@@ -130,9 +130,9 @@ namespace ProyectoInventarioWeb.Controllers
                 }
                 return Content("1");
             }
-            catch (Exception ex)
+            catch
             {
-                return Content(ex.InnerException.Message);
+                return Content("Es Necesario llenar todos los campos");
             }
         }
 
@@ -154,6 +154,20 @@ namespace ProyectoInventarioWeb.Controllers
                 return Content(ex.InnerException.Message);
             }
         }
+
+        //InventarioWebEntities db = new InventarioWebEntities();
+        //public ActionResult Buscador(string Nombre)
+        //{
+        //    var busqueda = from s in db.Producto select s;
+
+        //    if (!String.IsNullOrEmpty(Nombre))
+        //    {
+        //        busqueda = busqueda.Where(s => s.nombre_producto.Contains(Nombre));
+        //                               //|| s.codigo.Contains(Nombre));
+        //    }
+        //    return View(busqueda);
+        //}
+
 
     }
 }
