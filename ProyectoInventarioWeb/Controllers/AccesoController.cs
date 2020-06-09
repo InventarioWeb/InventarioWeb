@@ -19,6 +19,7 @@ namespace ProyectoInventarioWeb.Controllers
         public ActionResult LogOut()
         {
             Session["Usuario"] = null;
+            Session["RolUsuario"] = null;
             return RedirectToAction("Login", "Acceso");
         }
 
