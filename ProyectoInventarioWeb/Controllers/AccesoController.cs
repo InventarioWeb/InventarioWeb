@@ -20,6 +20,7 @@ namespace ProyectoInventarioWeb.Controllers
         {
             Session["Usuario"] = null;
             Session["RolUsuario"] = null;
+            Session["NombreUsuario"] = null;
             return RedirectToAction("Login", "Acceso");
         }
 
@@ -42,6 +43,8 @@ namespace ProyectoInventarioWeb.Controllers
                     else
                     {
                         Session["Usuario"] = oUser;
+                        Session["NombreUsuario"] = (oUser.nombre_usuario).ToString();
+                        Session["RolUsuario"] = oUser.id_rol;
                     }
 
                 }

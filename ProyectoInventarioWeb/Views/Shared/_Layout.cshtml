@@ -29,7 +29,7 @@
                     <li></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Nombre de Usuario", "index", "Usuarios")</li>
+                    <li id="nomUser">@(Session["NombreUsuario"])</li>
 
                 </ul>
             </div>
@@ -113,6 +113,14 @@
             float: right;
             padding-right: 5px;
             padding-top: 5px;
+        }
+        #nomUser{
+            color:#fff;
+            text-align:center;
+            vertical-align:central;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight:bold;
+            margin-top:15px;
         }
     </style>
 

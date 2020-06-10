@@ -30,11 +30,7 @@ namespace ProyectoInventarioWeb.Filters
                                         where m.id_rol == oUsuario.id_rol
                                         && m.id_Operacion == idOperacion
                                         select m;
-                if (HttpContext.Current.Session["Usuario"] != null)
-                {
-                    HttpContext.Current.Session["RolUsuario"] = oUsuario.id_rol;
-                }
-                
+             
                 if (lstMisOperaciones.ToList().Count() == 0)
                 {
                     nombreOperacion = getNombreDeOperacion(idOperacion);
