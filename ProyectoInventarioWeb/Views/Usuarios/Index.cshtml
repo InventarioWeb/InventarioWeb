@@ -6,12 +6,21 @@
 }
 
 <h2>Usuario</h2>
+<h2 style="text-align:center;">@ViewBag.Title</h2>
+<hr style="width:100%;" />
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
+<style type="text/css">
+    .thead-dark th {
+        background: #343a40;
+        color: white;
+        border-color: None;
+    }
+</style>
+<table class="table table-striped">
+    <tr class="thead-dark">
         <th>
             @Html.DisplayNameFor(model => model.nombre_usuario)
         </th>
@@ -36,35 +45,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contraseña)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.codigo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rol.nombre_rol)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_usuario }) |
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contraseña)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol.nombre_rol)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id_usuario }) |
 
-            @Html.ActionLink("Borrar", "Delete", new { id=item.id_usuario })
-        </td>
-    </tr>
-}
+                @Html.ActionLink("Borrar", "Delete", new { id = item.id_usuario })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -11,7 +11,8 @@ namespace ProyectoInventarioWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Proveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,15 @@ namespace ProyectoInventarioWeb.Models
         {
             this.Producto = new HashSet<Producto>();
         }
-    
+        [Display(Name = "ID")]
         public int id_proveedor { get; set; }
+        [Display(Name = "Nombre de Proveedor")]
         public string nombre_proveedor { get; set; }
+        [Display(Name = "Telefono")]
         public string telefono { get; set; }
+        [Display(Name = "Direccion")]
         public string direccion { get; set; }
+        [Display(Name = "Codigo")]
         public string codigo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

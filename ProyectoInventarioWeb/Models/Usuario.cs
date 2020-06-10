@@ -11,18 +11,26 @@ namespace ProyectoInventarioWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuario
     {
+      
         public int id_usuario { get; set; }
+        [Display(Name = "Nombre de Usuario")]
         public string nombre_usuario { get; set; }
+        [Display(Name = "Correo")]
         public string correo { get; set; }
+        [Display(Name = "Contraseña")]
         public string contraseña { get; set; }
+        [Display(Name = "Telefono")]
         public string telefono { get; set; }
+        [Display(Name = "Rol")]
         public int id_rol { get; set; }
         public System.DateTime Fecha { get; set; }
+        [Display(Name = "Codigo")]
         public string codigo { get; set; }
-    
+        [Display(Name = "Rol")]
         public virtual Rol Rol { get; set; }
     }
 }

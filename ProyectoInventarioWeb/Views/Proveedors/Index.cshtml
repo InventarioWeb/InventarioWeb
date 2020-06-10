@@ -4,14 +4,23 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h2 style="text-align:center;">@ViewBag.Title</h2>
+<hr style="width:100%;" />
 
 <h2>Proveedor</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
+<style type="text/css">
+    .thead-dark th {
+        background: #343a40;
+        color: white;
+        border-color: None;
+    }
+</style>
+<table class="table table-striped">
+    <tr class="thead-dark">
         <th>
             @Html.DisplayNameFor(model => model.nombre_proveedor)
         </th>
@@ -27,26 +36,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_proveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.codigo)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_proveedor }) |
-     
-            @Html.ActionLink("Borrar", "Delete", new { id=item.id_proveedor })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_proveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id_proveedor }) |
+
+                @Html.ActionLink("Borrar", "Delete", new { id = item.id_proveedor })
+            </td>
+        </tr>
+    }
 
 </table>
+@section scripts{
+    <script src="~/Scripts/Marca.js"></script>
+}
